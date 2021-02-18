@@ -1,0 +1,121 @@
+@import 'variables';
+
+.book-block {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 65px;
+  @media (max-width: 1090px) {
+    margin-bottom: 35px !important;
+    width: 100% !important;
+  }
+  @media (max-width: 768px) {
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #efefef;
+      margin-bottom: 25px;
+      padding-bottom: 45px;
+    }
+    background-color: white;
+    display: block !important;
+  }
+  &__card-author {
+    font-size: 18px;
+    font-weight: 650;
+    float: right;
+    @media (max-width: 768px) {
+      float: none;    
+    }
+  }
+  &__year {
+    float: left;
+    font-size: 18px;
+    font-weight: 650;
+    letter-spacing: 1%;
+    margin-bottom: 10px;
+    @media (max-width: 768px) {
+      float: none;    
+    }
+  }
+  &__image {
+    min-width: 200px;
+    height: 400px;
+    @media (max-width: 768px) {
+      width: 260px !important; 
+      float: none !important;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1%;
+    margin-bottom: 10px;
+  }
+  &__author {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+  &__selector {
+    display: "inline";
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    padding: 6px;
+    width: "50%";
+    ul {
+      display: flex;
+      flex: 1;
+
+      &:first-of-type {
+        margin-bottom: 6px;
+      }
+
+      li {
+        padding: 8px;
+        flex: 1;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        @include noselect();
+        &.active {
+          background: #ffffff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+          border-radius: 5px;
+          cursor: auto;
+        }
+        &.disabled {
+          opacity: 0.4;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  
+  &__bottom {
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+  }
+}
+.book-main {
+  @media (max-width: 768px) {
+    margin-top: "30px",
+  }
+  .book-other {
+    @media (max-width: 768px) {
+      width: 260px !important; 
+      display: inline-block !important;
+      width: 100% !important;
+    }
+    
+  }
+  
+}
