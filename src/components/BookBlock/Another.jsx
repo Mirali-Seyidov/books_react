@@ -1,7 +1,7 @@
 import React, {Text} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BookBlock from './index';
-function Another({category, id, value}) {
+function Another({category, id}) {
     const items = useSelector(({ books }) => books.items);
     const cartItems = useSelector(({ cart }) => cart.items);
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function Another({category, id, value}) {
         pFlex: {
           display: "flex",
           clear: "both",
-          flexWrap: "no-wrap",
+          flexWrap: "wrap",
           justifyContent: "space-around",
           marginTop: "50px",
         },
@@ -43,7 +43,6 @@ function Another({category, id, value}) {
                   key={obj.id}
                   addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                   {...obj}
-                  value={value}
                   pOther={bookOther.pOther}
                 /> : console.log('false')
               ))

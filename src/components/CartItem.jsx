@@ -3,7 +3,11 @@ import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const CartItem = ({ name, price, sizes, imageUrl, id, types, totalPrice, totalCount, onRemove, onMinus, onPlus }) => {
+const CartItem = ({ 
+  obj, onRemove, onMinus, onPlus, totalPrice, totalCount,
+}) => {
+  const { name, price, sizes, imageUrl, id, types, author, category, year, description } = obj;
+
   const handleRemoveClick = () => {
     onRemove(id);
   };
@@ -24,13 +28,14 @@ const CartItem = ({ name, price, sizes, imageUrl, id, types, totalPrice, totalCo
       minHeight: "290px",
     }
   };
-  console.log(price, "цена")
+  console.log(year, "год");
   return (
     <div className="cart__item">
-      <Link to={{
+      <Link className="cart__link" to={{
        pathname: '/BookCard',
+       
        state: {
-         payload: name, price, addedCount, sizes, imageUrl, id, totalPrice, types, totalCount, currentBook
+         payload: name, description, price, addedCount, author, year, sizes, category, imageUrl, id, totalPrice, types, totalCount, currentBook
        }
      }}>
         <div className="cart__item-img">
@@ -87,7 +92,7 @@ const CartItem = ({ name, price, sizes, imageUrl, id, types, totalPrice, totalCo
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{totalPrice} ₽</b>
+        <b>{totalPrice} AZN</b>
       </div>
       <div className="cart__item-remove">
         <Button onClick={handleRemoveClick} className="button--circle" outline>

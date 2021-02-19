@@ -5,9 +5,8 @@ import Button from '../Button';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-function BookBlock({ id, description, year, name, author, imageUrl, price, types, pOther, value, addedCount, category }) {
+function BookBlock({ id, description, year, name, author, imageUrl, price, types, pOther, addedCount, category }) {
   const availableTypes = ['Эксмо', 'Азбука'];
-  console.log(description, name, id, year);
   const [currentPrice, setCurrentPrice] = React.useState(price);
   const [activeType, setActiveType] = React.useState(types[0]);
   const dispatch = useDispatch();
@@ -21,22 +20,21 @@ function BookBlock({ id, description, year, name, author, imageUrl, price, types
   const onSelectType = (index) => {
     setActiveType(index);
   };
-  var aValue = value;
-
-  useEffect(() => {
-    aValue == "₽" ? setCurrentPrice(price) : setCurrentPrice(Math.round(price/75));
-  }, [value]);
+  
 
   const arrTypes = [];
 
   const onAddBook = () => {
     arrTypes.push(availableTypes[activeType]);
-    const price = value == "$" ? currentPrice*75 : currentPrice; 
     const obj = {
       id,
       name,
       imageUrl,
       price,
+      category,
+      author, 
+      description, 
+      year,
       type: availableTypes[activeType],
     };
     handleAddBookToCart(obj);
@@ -46,18 +44,18 @@ function BookBlock({ id, description, year, name, author, imageUrl, price, types
     }
   };
   return (
-    <div style={pOther ? pOther : bookOther.pNothing} className="book-block" >
+    <div style={pOther} className="book-block" >
      <Link to={{
        pathname: '/BookCard',
        state: {
-         payload: "", name, year, author, imageUrl, id, description, price, types, addedCount, category, currentPrice, value
+         payload: "", name, year, author, imageUrl, id, description, price, types, addedCount, category, currentPrice
        }
      }}>
       <img className="book-block__image" src={imageUrl} alt="book" />
     </Link>
       <h4 className="book-block__title">{name}</h4>
       <h5 className="book-block__author">{author}</h5>
-      <div className="book-block__selector">
+      <div style={{marginLeft: "0%"}} className="book-block__selector">
         <ul>
           {availableTypes.map((type, index) => (
             <li
@@ -73,7 +71,7 @@ function BookBlock({ id, description, year, name, author, imageUrl, price, types
         </ul>
       </div>
       <div className="book-block__bottom">
-        <div className="book-block__price">от {currentPrice} {value}</div>
+        <div className="book-block__price">{currentPrice} AZN</div>
         <Button onClick={onAddBook} className="button--add" outline>
           <svg
             width="12"
@@ -86,7 +84,7 @@ function BookBlock({ id, description, year, name, author, imageUrl, price, types
               fill="white"
             />
           </svg>
-          <span>Перейти</span>
+          <span>Добавить</span>
           {addedCount && <i>{addedCount}</i>}
         </Button>
       </div>

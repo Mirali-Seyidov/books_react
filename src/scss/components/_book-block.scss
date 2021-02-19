@@ -43,7 +43,7 @@
       float: none !important;
     }
   }
-
+  
   &__title {
     font-size: 20px;
     font-weight: 900;
@@ -55,20 +55,36 @@
     font-weight: 800;
     margin-bottom: 15px;
   }
+  &__left {
+    @media (min-width: 768px) {
+      margin-left: 30%;
+    }
+  }
+  &__info {
+    @media (min-width: 768px) {
+      display: block;
+      margin-left: 30%;
+      margin-top: 30px;
+    }
+    p {
+      @media (min-width: 768px) {
+        margin-top: 20px;
+        padding: 5px;
+      }
+    }
+  }
   &__selector {
-    display: "inline";
+    display: "block";
     background-color: #f3f3f3;
     border-radius: 10px;
     padding: 6px;
-    width: "50%";
+    
     ul {
       display: flex;
       flex: 1;
-
       &:first-of-type {
         margin-bottom: 6px;
       }
-
       li {
         padding: 8px;
         flex: 1;

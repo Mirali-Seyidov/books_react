@@ -5,10 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Another from './Another';
 
 function BookCard(payload) {
-  const { imageUrl, price, name, year, id, category, value, types, author, description, currentPrice, currentBook="" } = payload.location.state;
+  const { imageUrl, price, name, year, id, category, types, author, description, currentPrice, currentBook="" } = payload.location.state;
   const cartItems = useSelector(({ cart }) => cart.items);
   const availableTypes = ['Эксмо', 'Азбука'];
-  console.log(year);
   const currTypes = currentBook === "" ? types : currentBook.types;
   const addedCount = cartItems[id] && cartItems[id].items.length;
   const [activeType, setActiveType] = React.useState(currTypes[0]);
@@ -25,47 +24,48 @@ function BookCard(payload) {
   };
  
   const onAddBook = () => {
-    //const price = value == "$" ? currentPrice*75 : currentPrice; 
     console.log(price);
     const obj = {
       id,
       name,
       imageUrl,
+      author,
+      description,
+      year,
       price,
       type: availableTypes[activeType],
+      category,
     };
     handleAddBookToCart(obj);
   };
   const bookCard = {
     bBlock: {
-      display: "inline-block",
+      display: "block",
       padding: 50,
       marginBottom: 40,
       background: "white",
     },
     bImg: {
       float: "left",
-      width: "500px",
-      width: "27%"
+      
     },
   };
   const bookButtons = {
     bSelector: {
       height: bookCard.bImg.maxHeight,
-      
     },
   };
   const bookAnother = {
     pAnother: {
       clear: "both",
-    }
+    },
   };
-
+  console.log(category)
   return (
     <div className="book-block" style={bookCard.bBlock}>
       <img className="book-block__image" style={bookCard.bImg} src={imageUrl} alt="book" />
       <h4 className="book-block__title">{name}</h4>
-      <div className="book-block__selector" style={bookButtons.bSelector}>
+      <div className="book-block__selector book-block__left" style={bookButtons.bSelector}>
         <ul>
         {availableTypes.map((type, index) => (
             <li
@@ -79,12 +79,19 @@ function BookCard(payload) {
             </li>
           ))}
         </ul>
+      
+        
       </div>
+      <div className="book-block__info">
       <h4 className="book-block__year">Год выпуска {year}</h4>
-      <h4 className="book-block__card-author">Автор {author}</h4>
+        <h4 className="book-block__card-author">Автор {author}</h4>
+      <br />
+      <p>{description}</p>
 
+      </div>
+      
       <div className="book-block__bottom" style={bookButtons.pBottom}>
-        <div className="book-block__price">от {currentPrice && value ? currentPrice + value : price}</div>
+        <div className="book-block__price">{price} AZN</div>
         <Button onClick={onAddBook} className="button--add" outline>
           <svg
             width="12"
@@ -101,7 +108,7 @@ function BookCard(payload) {
           {addedCount && <i>{addedCount}</i>}
         </Button>
       </div>
-      <Another style={bookAnother.bAnother} value={value} id={id} currentPrice={currentPrice} category={category} name={name} handleAddBookToCart={handleAddBookToCart} />
+      <Another style={bookAnother.bAnother} id={id} currentPrice={currentPrice} category={category} name={name} handleAddBookToCart={handleAddBookToCart} />
     </div>
   );
 }

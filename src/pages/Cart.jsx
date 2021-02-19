@@ -116,14 +116,7 @@ function Cart() {
           <div className="content__items">
             {addedBooks.map((obj) => (
               <CartItem
-                key={obj.id}
-                id={obj.id}
-                name={obj.name}
-                addedCount={obj.addedCount}
-                types={obj.type}
-                imageUrl={obj.imageUrl}
-                description={obj.description}
-                price={obj.price}
+                obj={obj}
                 totalPrice={items[obj.id].totalPrice}
                 totalCount={items[obj.id].items.length}
                 onRemove={onRemoveItem}
@@ -138,7 +131,7 @@ function Cart() {
                 Всего книг: <b>{totalCount} шт.</b>
               </span>
               <span>
-                Сумма заказа: <b>{totalPrice} ₽</b>
+                Сумма заказа: <b>{totalPrice} AZN</b>
               </span>
             </div>
             <div className="cart__bottom-buttons">

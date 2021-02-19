@@ -6,14 +6,23 @@
   overflow: auto;
 
   @media (max-width: 768px) {
+    
     max-width: 100%;
     margin-bottom: 30px;
   }
 
   ul {
     display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
 
+    
     li {
+      flex-basis: 5%;
+      @media (max-width: 768px) {
+        flex-basis: 40%;
+        margin: 5px;
+      }
       background-color: #f9f9f9;
       padding: 13px 30px;
       border-radius: 30px;

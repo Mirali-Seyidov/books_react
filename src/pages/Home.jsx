@@ -20,14 +20,10 @@ function Home() {
   const cartItems = useSelector(({ cart }) => cart.items);
   const isLoaded = useSelector(({ books }) => books.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
-  const [value, setValue] = React.useState("₽");
   const [currentPage, setCurrentPage] = React.useState(1);
   React.useEffect(() => {
     dispatch(fetchBooks(sortBy, category));
   }, [category, sortBy]);
-  const setCurrentValue = () => {
-    (value == "₽") ? setValue("$") : setValue("₽");
-  }
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
   }, []);
@@ -86,7 +82,6 @@ while(previousSibling) {
                  key={obj.id}
                  addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                  {...obj}
-                 value={value}
                /> : console.log("")
              ))
           : Array(12)
