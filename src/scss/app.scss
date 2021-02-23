@@ -74,10 +74,10 @@ body {
     .content__title {
       margin: 0;
     }
-
     @media (max-width: 768px) {
       margin-top: 0;
       margin-bottom: 0;
+    
     }
 
     .content__items {
@@ -128,8 +128,9 @@ body {
     }
   }
   &__link {
-    @media (max-width: 768px) {
-      margin-right: 50px;
+    
+    @media (min-width: 768px) {
+      width: 48%;
     }
   }
   &__clear {
@@ -214,7 +215,8 @@ body {
         font-size: 18px;
         color: #8d8d8d;
       }
-
+      
+      @media (min-width: 768px) { width: 15vw; text-align: center;}
       @media (max-width: 768px) {
         width: 100%;
         order: 2;
@@ -422,7 +424,9 @@ body {
     margin: 0 auto;
     width: 560px;
     text-align: center;
-
+    @media (max-width: 768px) {
+      max-width: 80vw;
+    }
     h2 {
       font-size: 32px;
       margin-bottom: 10px;
