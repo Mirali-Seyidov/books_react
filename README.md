@@ -1,6 +1,6 @@
-Для запуска:
+Ссылка на деплойнутый проект - https://proj-react.herokuapp.com/
 
+<h1>Для запуска локально:</h1>
 
-node server.js
-
-npm start
+<b>node server.js</b>
+<b>npm start</b>
